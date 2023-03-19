@@ -63,4 +63,24 @@ interface BitwiseOperationOverloadingInterface
 	 * @return mixed
 	 */
 	public static function __not($op1);
+
+	/**
+	 * Enables the bitwise shift right operation
+	 * $obj1 >> $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
+	public static function __sr($op1, $op2);
+
+	/**
+	 * Enables the bitwise shift left operation
+	 * $obj1 << $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
+	public static function __sl($op1, $op2);
 }

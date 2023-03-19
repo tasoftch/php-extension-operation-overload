@@ -57,6 +57,12 @@ static zend_result my_operation(zend_uchar opcode, zval *result, zval *op1, zval
         case ZEND_CONCAT:
             ZVAL_STRING(&fn, "__cat");
             break;
+        case ZEND_SR:
+            ZVAL_STRING(&fn, "__sr");
+            break;
+        case ZEND_SL:
+            ZVAL_STRING(&fn, "__sl");
+            break;
         default:
             return FAILURE;
     }
@@ -70,9 +76,12 @@ static zend_result my_operation(zend_uchar opcode, zval *result, zval *op1, zval
         zend_object *obj = Z_OBJ_P(op1);
         if(zend_hash_exists(& obj->ce->function_table, fn.value.str))
             return _call_user_function_impl(op1, &fn, result, 2, params, NULL);
+        else if(Z_TYPE_P(op2) == IS_OBJECT)
+            goto try_other;
         return FAILURE;
     }
     else if(Z_TYPE_P(op2) == IS_OBJECT) {
+    try_other: ;
         zend_object *obj = Z_OBJ_P(op2);
         if(zend_hash_exists(& obj->ce->function_table, fn.value.str))
             return _call_user_function_impl(op2, &fn, result, 2, params, NULL);

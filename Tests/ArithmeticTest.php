@@ -57,6 +57,15 @@ class ArithmeticTest extends TestCase
 		$this->assertEquals(17, $n1 * $n2);
 		$this->assertEquals(17, $n1 * 14);
 		$this->assertEquals(17, 33 * $n2);
+
+		$n1 = new DivNumber();
+		$this->assertEquals(-56, -$n1);
+		$this->assertSame($n1, DivNumber::$op1);
+		$this->assertSame(-1, DivNumber::$op2);
+
+		$this->assertEquals(-56, +$n1);
+		$this->assertSame($n1, DivNumber::$op1);
+		$this->assertSame(1, DivNumber::$op2);
 	}
 
 	public function testDiv() {
@@ -79,6 +88,17 @@ class ArithmeticTest extends TestCase
 		$this->assertSame(78.56, DivNumber::$op1);
 		$this->assertSame($n2, DivNumber::$op2);
 	}
+
+	public function testMixedObjects() {
+		$n1 = new OnlyAddNumber(20);
+		$n2 = new OnlySubNumber(10);
+
+		$this->assertEquals(30, $n1 + $n2);
+		$this->assertEquals(-10, $n2 - $n1);
+
+		$this->assertEquals(30, $n2 + $n1);
+		$this->assertEquals(10, $n1 - $n2);
+	}
 }
 
 class DivNumber extends OperationOverloadingObject {
@@ -89,5 +109,40 @@ class DivNumber extends OperationOverloadingObject {
 		self::$op1 = $op1;
 		self::$op2 = $op2;
 		return -56;
+	}
+
+	public static function __mul($op1, $op2) {
+		self::$op1 = $op1;
+		self::$op2 = $op2;
+		return -56;
+	}
+}
+
+class Nr extends OperationOverloadingObject {
+	protected $number;
+	public function __construct($number) {
+		$this->number = $number;
+	}
+}
+
+class OnlyAddNumber extends Nr {
+	public static function __add($op1,$op2){
+		if($op1 instanceof Nr)
+			$op1 = $op1->number;
+		if($op2 instanceof Nr)
+			$op2 = $op2->number;
+
+		return $op1 + $op2;
+	}
+}
+
+class OnlySubNumber extends Nr {
+	public static function __sub($op1,$op2){
+		if($op1 instanceof Nr)
+			$op1 = $op1->number;
+		if($op2 instanceof Nr)
+			$op2 = $op2->number;
+
+		return $op1 - $op2;
 	}
 }

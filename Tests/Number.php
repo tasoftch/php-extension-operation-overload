@@ -27,7 +27,7 @@ use TASoft\Util\OperationOverloadingObject;
 
 class Number extends OperationOverloadingObject
 {
-	private $number;
+	protected $number;
 	public function __construct($number) {
 		$this->number = $number;
 	}

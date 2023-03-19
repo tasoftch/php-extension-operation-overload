@@ -25,8 +25,42 @@ namespace TASoft\Util\UOO;
 
 interface BitwiseOperationOverloadingInterface
 {
+	/**
+	 * Enables the bitwise or operation
+	 * $obj1 | $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __or($op1, $op2);
+
+	/**
+	 * Enables the bitwise and operation
+	 * $obj1 & $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __and($op1, $op2);
+
+	/**
+	 * Enables the bitwise xor operation
+	 * $obj1 ^ $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __xor($op1, $op2);
+
+	/**
+	 * Enables the bitwise not operation
+	 * ~$obj1
+	 *
+	 * @param $op1
+	 * @return mixed
+	 */
 	public static function __not($op1);
 }

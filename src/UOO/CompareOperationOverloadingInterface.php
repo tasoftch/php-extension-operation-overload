@@ -25,5 +25,22 @@ namespace TASoft\Util\UOO;
 
 interface CompareOperationOverloadingInterface
 {
+	/**
+	 * Enables the comparison operations
+	 * $obj1 == $obj2
+	 * $obj1 != $obj2
+	 * $obj1 < $obj2
+	 * $obj1 <= $obj2
+	 * $obj1 > $obj2
+	 * $obj1 >= $obj2
+	 * $obj1 <=> $obj2
+	 *
+	 * This method must return an integer (see <=> spaceship operator). All other operations are adapted.
+	 * So performing any of the above operation on an object that does not implement the __compare method will fail.
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return int
+	 */
 	public static function __compare($op1, $op2): int;
 }

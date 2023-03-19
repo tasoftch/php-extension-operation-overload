@@ -29,15 +29,11 @@
  */
 
 /**
- * The test function
- * @return bool
+ * @class \_UserOperationOverload
+ *
+ * All subclasses can implement the UOO interfaces.
+ * They don't have to implement it directly, they also can implement the required methods.
+ *
  */
 class _UserOperationOverload {
-	public static function __add($op1, $op2) {}
-	public static function __sub($op1, $op2) {}
-	public static function __mul($op1, $op2) {}
-	public static function __div($op1, $op2) {}
-
-	public static function __mod($op1, $op2){}
-	public static function __cat($op1, $op2) {}
 }

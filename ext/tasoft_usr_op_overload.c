@@ -39,6 +39,9 @@ static zend_result my_operation(zend_uchar opcode, zval *result, zval *op1, zval
         case ZEND_MOD:
             ZVAL_STRING(&fn, "__mod");
             break;
+        case ZEND_POW:
+            ZVAL_STRING(&fn, "__pow");
+            break;
         case ZEND_BW_OR:
             ZVAL_STRING(&fn, "__or");
             break;

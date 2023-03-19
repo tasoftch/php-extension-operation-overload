@@ -21,17 +21,53 @@
  * SOFTWARE.
  */
 
-namespace TASoft\Util\UOO;
+namespace TASoft\Util\Test;
 
-interface StringOperationOverloadingInterface
+use TASoft\Util\OperationOverloadingObject;
+
+class Number extends OperationOverloadingObject
 {
+	private $number;
+	public function __construct($number) {
+		$this->number = $number;
+	}
+
+	public static function __add($op1,$op2){
+		if($op1 instanceof Number)
+			$op1 = $op1->number;
+		if($op2 instanceof Number)
+			$op2 = $op2->number;
+
+		return $op1 + $op2;
+	}
+
+	public static function __sub($op1,$op2){
+		if($op1 instanceof Number)
+			$op1 = $op1->number;
+		if($op2 instanceof Number)
+			$op2 = $op2->number;
+
+		return new static($op1 - $op2);
+	}
+
+	public static function __mul($op1,$op2){
+		return 17;
+	}
+
+	public static function __div($op1,$op2){
+		if($op1 instanceof Number)
+			$op1 = $op1->number;
+		if($op2 instanceof Number)
+			$op2 = $op2->number;
+
+		return new static($op1 / $op2);
+	}
+
 	/**
-	 * Enables the string concatenation operation
-	 * $obj1 . $obj2
-	 *
-	 * @param $op1
-	 * @param $op2
 	 * @return mixed
 	 */
-	public static function __cat($op1, $op2);
+	public function getNumber()
+	{
+		return $this->number;
+	}
 }

@@ -23,12 +23,69 @@
 
 namespace TASoft\Util\UOO;
 
+/**
+ * Implementing these methods on an TASoft\Util\OperationOverloadingObject enables the specified operation.
+ */
 interface ArithmeticOperationOverloadingInterface
 {
+	/**
+	 * Enables the arithmetic add operation
+	 * $obj1 + $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __add($op1, $op2);
+
+	/**
+	 * Enables the arithmetic subtract operation
+	 * $obj1 - $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __sub($op1, $op2);
+
+	/**
+	 * Enables the arithmetic multiplication operation
+	 * $obj1 * $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __mul($op1, $op2);
+
+	/**
+	 * Enables the arithmetic division operation
+	 * $obj1 / $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
 	public static function __div($op1, $op2);
 
+	/**
+	 * Enables the arithmetic modulo operation
+	 * $obj1 % $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
+
 	public static function __mod($op1, $op2);
+
+	/**
+	 * Enables the arithmetic power operation
+	 * $obj1 ** $obj2
+	 *
+	 * @param $op1
+	 * @param $op2
+	 * @return mixed
+	 */
+	public static function __pow($op1, $op2);
 }

@@ -118,7 +118,6 @@ static zend_object* test_create_object(zend_class_entry *class_type) {
     zend_object_std_init((zend_object *) zov, class_type);
     object_properties_init((zend_object*)zov, class_type);
 
-    zend_objects_store_put(zov);
     zov->handlers = &tasoft_class_handlers;
 
     return zov;
